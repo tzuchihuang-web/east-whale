@@ -3,74 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東京 6天5夜 終極手冊 V3</title>
+    <title>東京 6天5夜 隨身神隊友 App V4</title>
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --accent-color: #ff6b6b;
-            --bg-color: #f5f7fa;
+            --primary-color: #3182ce;
+            --accent-color: #e53e3e;
+            --bg-color: #f7fafc;
             --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-sub: #777777;
-            --transit-bg: #eef2f7;
+            --text-main: #2d3748;
+            --text-sub: #718096;
+            --transit-bg: #edf2f7;
         }
-        * { box-shadow: border-box; box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 70px; }
-        header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 20px 15px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        header h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; }
-        header p { font-size: 0.85rem; opacity: 0.8; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 80px; -webkit-font-smoothing: antialiased; }
         
-        .nav-tabs { display: flex; overflow-x: auto; background: white; padding: 10px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 68px; z-index: 99; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-        .tab-btn { padding: 8px 16px; margin: 0 4px; border: none; background: #f0f2f5; border-radius: 20px; font-size: 0.9rem; font-weight: bold; color: var(--text-sub); cursor: pointer; transition: all 0.3s; flex: 0 0 auto; }
-        .tab-btn.active { background: var(--primary-color); color: white; box-shadow: 0 2px 8px rgba(74,144,226,0.4); }
+        header { background: linear-gradient(135deg, #1a365d, #2a4365); color: white; padding: 20px 15px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.5px; }
+        header p { font-size: 0.8rem; opacity: 0.85; }
+        
+        .nav-tabs { display: flex; overflow-x: auto; background: white; padding: 10px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 64px; z-index: 99; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        .tab-btn { padding: 8px 16px; margin: 0 4px; border: none; background: #edf2f7; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: var(--text-sub); cursor: pointer; transition: all 0.2s; flex: 0 0 auto; }
+        .tab-btn.active { background: var(--primary-color); color: white; box-shadow: 0 2px 8px rgba(49,130,206,0.3); }
         
         .content-container { padding: 15px; max-width: 600px; margin: 0 auto; }
         .day-panel { display: none; }
-        .day-panel.active { display: block; animation: fadeIn 0.4s ease-out; }
+        .day-panel.active { display: block; animation: fadeIn 0.3s ease-out; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         
-        .flex-toggle { display: flex; background: #e2e8f0; padding: 4px; border-radius: 25px; margin-bottom: 15px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
-        .toggle-btn { flex: 1; text-align: center; padding: 10px; font-weight: bold; font-size: 0.9rem; border-radius: 22px; cursor: pointer; transition: all 0.2s; border: none; color: var(--text-sub); background: transparent; }
-        .toggle-btn.active { background: white; color: #2d3748; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .toggle-btn.active.方案A { color: #2b6cb0; border: 1px solid #bee3f8; }
-        .toggle-btn.active.方案B { color: #c53030; border: 1px solid #fed7d7; }
+        .flex-toggle { display: flex; background: #e2e8f0; padding: 4px; border-radius: 25px; margin-bottom: 15px; }
+        .toggle-btn { flex: 1; text-align: center; padding: 10px; font-weight: bold; font-size: 0.85rem; border-radius: 22px; cursor: pointer; transition: all 0.2s; border: none; color: var(--text-sub); background: transparent; }
+        .toggle-btn.active { background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .toggle-btn.active.方案A { color: #2b6cb0; }
+        .toggle-btn.active.方案B { color: #c53030; }
 
         .fuji-route { display: none; }
         .fuji-route.active { display: block; }
 
-        .card { background: var(--card-bg); border-radius: 14px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border-left: 5px solid var(--primary-color); }
-        .card.airport { border-left-color: #48bb78; }
-        .card.hotel { border-left-color: #ed8936; }
-        .card.dinner { border-left-color: #9f7aea; }
+        .card { background: var(--card-bg); border-radius: 14px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-left: 5px solid var(--primary-color); position: relative; }
+        .card.airport { border-left-color: #38a169; }
+        .card.hotel { border-left-color: #dd6b20; }
+        .card.dinner { border-left-color: #805ad5; }
         
-        .time-tag { font-size: 0.8rem; font-weight: bold; color: white; background: #4a5568; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
-        .card h3 { font-size: 1.1rem; margin-bottom: 6px; color: #1a202c; }
-        .card h3 a { color: #1a202c; text-decoration: underline; text-decoration-color: var(--primary-color); }
-        .card p { font-size: 0.9rem; color: #4a5568; line-height: 1.45; margin-bottom: 6px; }
+        .time-tag { font-size: 0.75rem; font-weight: bold; color: white; background: #4a5568; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+        
+        .card h3 { font-size: 1.05rem; margin-bottom: 6px; font-weight: 700; }
+        .card h3 a { color: #1a202c; text-decoration: none; border-bottom: 2px solid #cbd5e0; padding-bottom: 1px; display: inline-flex; align-items: center; gap: 4px; }
+        .card h3 a::after { content: "📍"; font-size: 0.85rem; }
+        
+        .card p { font-size: 0.9rem; color: #4a5568; line-height: 1.5; margin-bottom: 4px; }
         .highlight { color: var(--accent-color); font-weight: bold; }
         
-        .transit-link { background: var(--transit-bg); border-radius: 10px; padding: 10px 12px; margin: 5px 0 15px 15px; font-size: 0.85rem; color: #4a5568; border-left: 3px dashed #cbd5e0; display: flex; align-items: center; gap: 8px; }
-        .transit-icon { font-size: 1.1rem; }
+        .transit-link { background: var(--transit-bg); border-radius: 10px; padding: 10px 12px; margin: 5px 0 15px 10px; font-size: 0.85rem; color: #4a5568; border-left: 3px dashed #a0aec0; display: flex; align-items: center; gap: 8px; }
         
-        .flexible-box { margin-top: 10px; border-top: 1px solid #edf2f7; padding-top: 10px; }
-        .flex-trigger { background: #f7fafc; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--primary-color); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; }
+        .flexible-box { margin-top: 12px; border-top: 1px solid #edf2f7; padding-top: 10px; }
+        .flex-trigger { background: #f7fafc; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; color: var(--primary-color); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; }
         .flex-trigger::after { content: "▼"; font-size: 0.7rem; transition: transform 0.2s; }
         .flex-trigger.open::after { transform: rotate(180deg); }
-        .flex-content { display: none; padding: 10px; background: #fffaf0; border: 1px solid #feebc8; border-radius: 6px; margin-top: 5px; font-size: 0.85rem; color: #744210; line-height: 1.6; }
-        .flex-content a { color: #744210; font-weight: bold; text-decoration: underline; }
+        .flex-content { display: none; padding: 12px; background: #fffaf0; border: 1px solid #feebc8; border-radius: 8px; margin-top: 6px; font-size: 0.85rem; color: #744210; line-height: 1.6; }
+        .flex-content a { color: #b7791f; font-weight: bold; text-decoration: underline; }
         
-        footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+        footer { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
         .foot-item { text-align: center; color: var(--text-sub); font-size: 0.75rem; text-decoration: none; cursor: pointer; flex: 1; }
         .foot-item.active { color: var(--primary-color); font-weight: bold; }
-        .foot-icon { font-size: 1.3rem; display: block; margin-bottom: 2px; }
+        .foot-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>東京 6天5夜 隨身應援 App</h1>
-    <p>住：東急STAY高輪 (泉岳寺站) | 點擊地點開啟 Google Maps</p>
+    <p>點擊景點名稱直接喚醒 Google Maps 導航</p>
 </header>
 
 <div class="nav-tabs" id="tabBar">
@@ -87,146 +90,138 @@
     <div class="day-panel active" id="day0">
         <div class="card airport">
             <span class="time-tag">15:30</span>
-            <h3><a href="https://maps.app.goo.gl/uXv7oY49qB5d6ZscA" target="_blank">桃園國際機場 T1</a></h3>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=桃園國際機場第一航廈" target="_blank">桃園國際機場 T1</a></h3>
             <p>搭乘 <span class="highlight">台灣虎航 IT700</span> 準時出發！</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">✈️</span>
-            <span>航程預計於 19:55 降落東京</span>
+            <span>✈️ 預計 19:55 降落東京成田機場</span>
         </div>
         
         <div class="card airport">
             <span class="time-tag">19:55</span>
-            <h3><a href="https://maps.app.goo.gl/pW8xGvXvsz3pPZtL6" target="_blank">成田國際機場 T2</a></h3>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=成田國際機場第二航廈" target="_blank">成田國際機場 T2</a></h3>
             <p>辦理入境並提領行李。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>搭乘 <b>京成電鐵 Access 特快 (羽田空港行)</b> 直達「泉岳寺站」下車。</span>
+            <span>🚃 <b>推薦交通方式：</b>搭乘「京成電鐵 Access 特快 (羽田空港行)」，中途免換車直通運轉淺草線，直達「泉岳寺站」。</span>
         </div>
         
         <div class="card hotel">
             <span class="time-tag">22:30</span>
-            <h3><a href="https://maps.app.goo.gl/Fk9p3vCgZf9wmsP87" target="_blank">東急STAY高輪飯店 (Tokyu Stay Takanawa)</a></h3>
-            <p>由泉岳寺站 A2 出口步行 1 分鐘即達。</p>
-        </div>
-        
-        <div class="card">
-            <span class="time-tag">Night</span>
-            <h3>極致睡眠</h3>
-            <p>附近超商買宵夜，好好睡覺為明天充電。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=東急STAY高輪" target="_blank">東急STAY高輪 (Tokyu Stay Takanawa)</a></h3>
+            <p>由泉岳寺站 A2 出口步行 1 分鐘即達，快速 Check-in 休息。</p>
         </div>
     </div>
 
     <div class="day-panel" id="day1">
         <div class="card">
             <span class="time-tag">09:30 - 11:30</span>
-            <h3><a href="https://maps.app.goo.gl/gQ9Z8g7h7mZ8m9tL8" target="_blank">淺草寺 & 雷門</a></h3>
-            <p>漫步仲見世通，朝聖淺草下町文化起點。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=淺草寺" target="_blank">淺草寺 & 雷門</a></h3>
+            <p>早晨漫步仲見世通，朝聖東京最經典下町文化。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚶</span>
-            <span>步行約 12 分鐘前往合羽橋</span>
+            <span>🚶 <b>推薦交通方式：</b>經由雷門向西步行約 12 分鐘即可抵達道具街。</span>
         </div>
         
         <div class="card">
             <span class="time-tag">11:30 - 12:45</span>
-            <h3><a href="https://maps.app.goo.gl/3K2S4g7h7mZ8m9tL8" target="_blank">合羽橋道具街</a></h3>
-            <p>探索精緻廚具與仿真食物模型商店。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=合羽橋道具街" target="_blank">合羽橋道具街</a></h3>
+            <p>尋訪高質感日本廚具與超仿真精緻食物模型商店。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>由「淺草站」搭淺草線往回坐 2 站至「淺草橋站」</span>
+            <span>🚃 <b>推薦交通方式：</b>從地鐵「淺草站」搭乘淺草線往西坐 2 站至「淺草橋站」。</span>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">13:00 - 14:30</span>
-            <h3>午餐：<a href="https://maps.app.goo.gl/bM57aK6z5nKCHv7C9" target="_blank">牛舌日 淺草橋分店 (牛舌日 浅草橋分店)</a></h3>
-            <p>🍱 <b>珍藏名單</b>：炭火直烤多汁厚切牛舌定食，香氣爆棚！</p>
+            <h3>午餐：<a href="https://www.google.com/maps/search/?api=1&query=牛舌日+浅草橋分店" target="_blank">牛舌日 淺草橋分店</a></h3>
+            <p>🥩 <b>珍藏名單</b>：炭火現烤爆汁厚切牛舌定食，體驗純粹的極致香氣！</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>從淺草橋站搭乘地鐵至「押上站」</span>
+            <span>🚃 <b>推薦交通方式：</b>由淺草橋站搭乘地鐵至「押上站」直達晴空塔。</span>
         </div>
         
         <div class="card">
             <span class="time-tag">15:00 - 18:30</span>
-            <h3><a href="https://maps.app.goo.gl/3b997gWszqQ9m9tL8" target="_blank">東京晴空塔 (Tokyo Skytree)</a></h3>
-            <p>高空觀看日落美景，並大逛 Solamachi 百貨商場。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=東京晴空塔" target="_blank">東京晴空塔 (Tokyo Skytree)</a></h3>
+            <p>登上展望台俯瞰絕美都市日落，隨後瘋逛下方的 Solamachi 商場。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>搭乘地鐵前往六本木地區 (約 25 分鐘)</span>
+            <span>🚃 <b>推薦交通方式：</b>搭乘地鐵前往六本木地區 (約 25 分鐘)。</span>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">19:00 - 21:00</span>
-            <h3>晚餐：<a href="https://maps.app.goo.gl/EaySgX8TqF9Wv8bB7" target="_blank">WAGYU SUKIYAKI 極～GOKU～ 六本木</a></h3>
-            <p>🍲 <b>珍藏名單</b>：在優雅包廂環境中品嚐頂級黑毛和牛壽喜燒。</p>
+            <h3>晚餐：<a href="https://www.google.com/maps/search/?api=1&query=WAGYU+SUKIYAKI+極+GOKU+六本木" target="_blank">WAGYU SUKIYAKI 極～GOKU～</a></h3>
+            <p>🍲 <b>珍藏名單</b>：在舒適幽靜的環境中享用頂級和牛壽喜燒。</p>
+            <div class="flexible-box">
+                <div class="flex-trigger" onclick="toggleFlex(this)">查看晴空塔周邊 Flexible 晚餐備案</div>
+                <div class="flex-content">
+                    • <a href="https://www.google.com/maps/search/?api=1&query=六厘舍+晴空塔" target="_blank">六厘舍 沾麵 (Solamachi 6F)</a>：極度濃郁的人氣超高沾麵。<br>
+                    • <a href="https://www.google.com/maps/search/?api=1&query=敘敘苑+晴空塔" target="_blank">敘敘苑 燒肉 (Solamachi 30F)</a>：邊欣賞高空夜景邊享用精緻燒肉。
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="day-panel" id="day2">
         <div class="card">
             <span class="time-tag">09:30 - 11:30</span>
-            <h3><a href="https://maps.app.goo.gl/A7C4gWszqQ9m9tL8" target="_blank">明治神宮 & 表參道</a></h3>
-            <p>從品川搭山手線至原宿站。享受森林漫步，隨後觀賞表參道前衛建築設計。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=明治神宮" target="_blank">明治神宮 & 表參道</a></h3>
+            <p>品川搭山手線至原宿站。穿過巨型鳥居享受森林綠意，再一路散步前往設計精品街區。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚶</span>
-            <span>步行至表參道精緻午餐</span>
+            <span>🚶 <b>推薦交通方式：</b>由神宮大路直接步行前往表參道中心。</span>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">11:30 - 13:00</span>
-            <h3>午餐：<a href="https://maps.app.goo.gl/Gco1zT6Yd5wmsE987" target="_blank">山笑ふ (Shabushabu yamawarau 表參道店)</a></h3>
-            <p>🍲 <b>珍藏名單</b>：高質感個人日系精緻涮涮鍋。</p>
+            <h3>午餐：<a href="https://www.google.com/maps/search/?api=1&query=山笑ふ+表參道店" target="_blank">山笑ふ (yamawarau)</a></h3>
+            <p>🍲 <b>珍藏名單</b>：日系優雅一人極致涮涮鍋，肉質極佳。</p>
             <div class="flexible-box">
-                <div class="flex-trigger" onclick="toggleFlex(this)">查看 Flexible 豬排替代選項</div>
+                <div class="flex-trigger" onclick="toggleFlex(this)">附近 Flexible 豬排點心備案</div>
                 <div class="flex-content">
-                    • <b><a href="https://maps.app.goo.gl/m3998gWszqQ9m9tL8" target="_blank">邁泉豬排 青青春本店 (まい泉)</a></b>：全東京最知名炸豬排殿堂，若沒時間坐下來吃，非常推薦外帶一份「黑豬肉炸豬排三明治夾心餅」當下午茶點心！
+                    • <a href="https://www.google.com/maps/search/?api=1&query=邁泉豬排+青青山總店" target="_blank">邁泉豬排 青青山總店 (まい泉)</a>：大名鼎鼎的炸豬排店！若正餐排太長，極推薦去外帶窗口買一份招牌「炸豬排三明治夾心餅」帶著吃！
                 </div>
             </div>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>由「明治神宮前站」搭小田急線直達「下北澤站」 (約 10 分鐘)</span>
+            <span>🚃 <b>推薦交通方式：</b>從「明治神宮前站」搭乘地鐵小田急線直達「下北澤站」(約 10 分鐘)。</span>
         </div>
         
         <div class="card">
             <span class="time-tag">13:30 - 16:30</span>
-            <h3><a href="https://maps.app.goo.gl/oY6x8g7h7mZ8m9tL8" target="_blank">下北澤文青生活圈：reload</a></h3>
-            <p>🛍️ <b>珍藏名單</b>：朝聖純白極簡的新複合式商場，滿載獨立咖啡店與質感古著。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=reload+下北澤" target="_blank">下北澤文青新地標：reload</a></h3>
+            <p>🛍️ <b>珍藏名單</b>：純白極簡風複合商場，集結了獨立咖啡、手作雜貨與獨特古著店。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>搭乘 京王井之頭線 快速列車直達「澀谷站」</span>
+            <span>🚃 <b>推薦交通方式：</b>搭乘「京王井之頭線」急行列車，一站直達「澀谷站」(約 5 分鐘)。</span>
         </div>
         
         <div class="card">
             <span class="time-tag">17:00 - 21:30</span>
-            <h3>澀谷地標購物區</h3>
-            <p>• <b><a href="https://maps.app.goo.gl/X9C4gWszqQ9m9tL8" target="_blank">SHIBUYA SKY</a></b>：絕美無邊際高空日落。<br>
-               • <b><a href="https://maps.app.goo.gl/wY6x8g7h7mZ8m9tL8" target="_blank">澀谷 PARCO (6F)</a></b>：動漫與潮流聖地。<br>
-               • <b><a href="https://maps.app.goo.gl/Tco4gWszqQ9m9tL8" target="_blank">西武澀谷店 LoFt 館</a></b>：<b>珍藏名單</b>！生活質感文具雜貨大採購。</p>
+            <h3>澀谷潮流激戰區</h3>
+            <p>• <a href="https://www.google.com/maps/search/?api=1&query=SHIBUYA+SKY" target="_blank">SHIBUYA SKY</a>：無邊際高空景觀，看經典十字路口。<br>
+               • <a href="https://www.google.com/maps/search/?api=1&query=澀谷PARCO" target="_blank">澀谷 PARCO</a>：狂逛 6 樓任天堂、寶可夢與潮流核心。<br>
+               • <a href="https://www.google.com/maps/search/?api=1&query=西武澀谷店+LoFt館" target="_blank">西武澀谷 LoFt 館</a>：<b>珍藏名單</b>！生活文具、美妝與質感小物採購天堂。</p>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">21:30</span>
-            <h3>晚餐備案彈性區</h3>
-            <div class="flexible-box" style="margin-top:0; padding-top:0; border-top:none;">
-                <div class="flex-trigger" onclick="toggleFlex(this)">展開今日澀谷 Flexible 宵夜拉麵</div>
+            <h3>晚餐宵夜首選</h3>
+            <div class="flexible-box" style="margin-top:0; border-top:none; padding-top:0;">
+                <div class="flex-trigger" onclick="toggleFlex(this)">點擊查看澀谷 Flexible 拉麵方案</div>
                 <div class="flex-content">
-                    • <b><a href="https://maps.app.goo.gl/D4M8gWszqQ9m9tL8" target="_blank">Tonkotsu Aotō 豚骨拉麵店</a></b>：<b>珍藏名單</b>！逛累了最適合用這碗極致濃郁的拉麵完美收尾。
+                    • <a href="https://www.google.com/maps/search/?api=1&query=Tonkotsu+Aotō+澀谷" target="_blank">Tonkotsu Aotō 豚骨拉麵</a>：<b>珍藏名單</b>！逛累了最適合用這碗醇厚香濃的豚骨拉麵完美收尾。
                 </div>
             </div>
         </div>
@@ -235,66 +230,73 @@
     <div class="day-panel" id="day3">
         <div class="flex-toggle">
             <button class="toggle-btn 方案A active" onclick="toggleFuji('A')">🚌 方案A：富士山一日Tour</button>
-            <button class="toggle-btn 方案B" onclick="toggleFuji('B')">☁️ 方案B：市區美食+鐵塔夜拍</button>
+            <button class="toggle-btn 方案B" onclick="toggleFuji('B')">☁️ 方案B：美食與鐵塔夜拍</button>
         </div>
 
         <div id="fujiA" class="fuji-route active">
             <div class="card airport" style="border-left-color: #2b6cb0;">
-                <span class="time-tag">07:00 - 18:30</span>
-                <h3>富士山一日遊 Tour 行程</h3>
-                <p>✨ <b>今天跟著一日遊旅行團出發</b>！不需要煩惱交通，放鬆乘車。沿途飽覽富士山、河口湖美景與歷史文化（包含<b><a href="https://maps.app.goo.gl/fN7A6w1gD9wmsP87" target="_blank">山梨縣立富士山世界遺產中心</a></b>等珍藏點）。</p>
-                <p><small>*請依各旅行社公告之指定新宿集合地點提早報到。</small></p>
+                <span class="time-tag">全天行程</span>
+                <h3>富士山一日遊 Tour（免排行程）</h3>
+                <p>✨ <b>今日全心享受富士山 Tour 一日遊</b>！</p>
+                <p>無須操心繁瑣交通，跟著接駁車放鬆出發。一路上將飽覽經典富士山水風光與傳統文化（將走訪包括您儲存的 <a href="https://www.google.com/maps/search/?api=1&query=山梨縣立富士山世界遺產中心" target="_blank" style="color:#2b6cb0; font-weight:bold;">山梨縣立富士山世界遺產中心</a> 等亮點）。</p>
+                <p><small>*請依您預訂的旅行社通知，提早至新宿等指定地點集合上車。</small></p>
             </div>
+            
             <div class="transit-link">
-                <span class="transit-icon">🚌</span>
-                <span>傍晚搭遊覽車返回新宿解散</span>
+                <span>🚌 <b>回程交通：</b>傍晚隨 Tour 接駁車返回新宿市區解散。</span>
             </div>
+            
             <div class="card dinner">
                 <span class="time-tag">19:30</span>
-                <h3>晚餐：<a href="https://maps.app.goo.gl/K8co1zT6Yd5wmsE987" target="_blank">Sukiyaki Matsukiya (松喜屋 新宿)</a></h3>
-                <p>🍲 <b>珍藏名單</b>：跟完團回市區，大啖滋賀近江牛老字號的壽喜燒或涮涮鍋，最頂級的享受！</p>
+                <h3>晚餐：<a href="https://www.google.com/maps/search/?api=1&query=Sukiyaki+Matsukiya+新宿" target="_blank">Sukiyaki Matsukiya (松喜屋 新宿)</a></h3>
+                <p>🍲 <b>珍藏名單</b>：跟完團回市區，大啖老字號高檔近江牛壽喜燒/涮涮鍋，洗去整天疲憊！</p>
             </div>
         </div>
 
         <div id="fujiB" class="fuji-route">
             <div class="card">
                 <span class="time-tag">09:30 - 12:30</span>
-                <h3>築地市場海鮮盛宴</h3>
-                <p>• <b><a href="https://maps.app.goo.gl/V4M5gK6z5nKCHv7C9" target="_blank">築地虎杖 裹店/那智店</a></b>：<b>珍藏名單</b>！品嚐震撼視覺的頂級豪華海膽丼飯三吃！<br>
-                   • <b><a href="https://maps.app.goo.gl/yY7A6w1gD9wmsP87" target="_blank">MATCHA STAND MARUNI</a></b>：<b>珍藏名單</b>！飯後來一杯現場刷製的日本橋極致抹茶拿鐵。</p>
+                <h3>築地市場海鮮大快朵頤</h3>
+                <p>• <a href="https://www.google.com/maps/search/?api=1&query=Tsukiji+Unitora+Nakadori" target="_blank">築地虎杖 Nakadori (裏店)</a>：<b>珍藏名單</b>！朝聖頂級豪華「海膽丼飯三吃」，鮮甜爆棚。<br>
+                   • <a href="https://www.google.com/maps/search/?api=1&query=MATCHA+STAND+MARUNI" target="_blank">MATCHA STAND MARUNI</a>：<b>珍藏名單</b>！飯後點一杯由職人當場現刷的極濃郁日式抹茶拿鐵。</p>
             </div>
+            
             <div class="transit-link">
-                <span class="transit-icon">🚶</span>
-                <span>步行或搭地鐵前往銀座購物區</span>
+                <span>🚃 <b>推薦交通方式：</b>搭乘日比谷線從築地站前往「銀座站」大區。</span>
             </div>
+            
             <div class="card">
                 <span class="time-tag">13:00 - 15:30</span>
-                <h3><a href="https://maps.app.goo.gl/Nco4gWszqQ9m9tL8" target="_blank">銀座高質感漫步</a></h3>
-                <p>大逛 GINZA SIX（欣賞當代藝術裝置）、UNIQLO 全球旗艦店。</p>
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX" target="_blank">銀座高質感散策</a></h3>
+                <p>漫步貴婦百貨 GINZA SIX 欣賞當代藝術中庭，大逛 UNIQLO 全球最大旗艦店。</p>
             </div>
+            
             <div class="card">
                 <span class="time-tag">15:30 - 17:00</span>
-                <h3>下午茶：<a href="https://maps.app.goo.gl/6b57aK6z5nKCHv7C9" target="_blank">銀座小野寺 迴轉壽司 (Ginza Onodera)</a></h3>
-                <p>🍣 <b>珍藏名單</b>：米其林血統的高端迴轉壽司，單點幾貫海膽或肥美鮪魚大腹當下午茶！</p>
+                <h3>精緻下午茶</h3>
+                <p>• <a href="https://www.google.com/maps/search/?api=1&query=Conveyor+Kaiten+Sushi+Ginza+Onodera" target="_blank">銀座小野寺 迴轉壽司 (Ginza Onodera)</a>：<b>珍藏名單</b>！承襲米其林血統的高端迴轉壽司，單點幾貫頂級海膽與肥美鮪魚，極致奢華點心！</p>
             </div>
+            
             <div class="transit-link">
-                <span class="transit-icon">🚃</span>
-                <span>從銀座搭 <b>日比谷線至「神谷町站」</b> 或 <b>大江戶線至「赤羽橋站」</b></span>
+                <span>🚃 <b>推薦交通方式：</b>從銀座搭乘 <b>日比谷線至「神谷町站」</b> 或 <b>大江戶線至「赤羽橋站」</b>。</span>
             </div>
+            
             <div class="card" style="border-left-color: #ff6b6b;">
                 <span class="time-tag">17:30 - 19:30</span>
-                <h3>📸 東京鐵塔夢幻夜拍點</h3>
-                <p>📍 導航至您儲存的地點：<b><a href="https://maps.app.goo.gl/fco4gWszqQ9m9tL8" target="_blank">東麻布 1 丁目 3-6 (公寓大樓夾縫看鐵塔)</a></b></p>
-                <p>拍攝東京鐵塔筆直高聳的絕美都市延伸感大片！夜拍完可至旁邊的 <b><a href="https://maps.app.goo.gl/L8M5gK6z5nKCHv7C9" target="_blank">Sweet Check</a></b> 咖啡廳喝杯熱飲欣賞點燈鐵塔。</p>
+                <h3>📸 夢幻夜拍：東京鐵塔公寓大片</h3>
+                <p>📍 精準定位您儲存的機位：<a href="https://www.google.com/maps/search/?api=1&query=1+Chome-3-6+Higashiazabu+Minato+City" target="_blank">東麻布 1 Chome-3-6</a></p>
+                <p>捕捉亮燈的東京鐵塔筆直聳立在兩側公寓大樓夾縫中的延伸感大片！</p>
+                <p>☕ 拍完後前往旁邊的 <a href="https://www.google.com/maps/search/?api=1&query=Sweet+Check" target="_blank">Sweet Check</a> 咖啡廳喝杯熱飲，一邊悠閒眺望鐵塔。</p>
             </div>
+            
             <div class="transit-link">
-                <span class="transit-icon">🚃</span>
-                <span>搭車前往六本木晚餐點</span>
+                <span>🚃 <b>推薦交通方式：</b>搭地鐵或計程車返回六本木市中心。</span>
             </div>
+            
             <div class="card dinner">
                 <span class="time-tag">20:00</span>
-                <h3>晚餐：<a href="https://maps.app.goo.gl/EaySgX8TqF9Wv8bB7" target="_blank">WAGYU SUKIYAKI 極～GOKU～</a></h3>
-                <p>天冷或雨天備案，用熱騰騰的高級和牛壽喜燒溫暖身心。</p>
+                <h3>晚餐：<a href="https://www.google.com/maps/search/?api=1&query=WAGYU+SUKIYAKI+極+GOKU+六本木" target="_blank">WAGYU SUKIYAKI 極～GOKU～</a></h3>
+                <p>回到六本木，用暖胃的高級黑毛和牛壽喜燒犒賞自己，完美結束方案B的一天。</p>
             </div>
         </div>
     </div>
@@ -302,47 +304,40 @@
     <div class="day-panel" id="day4">
         <div class="card">
             <span class="time-tag">10:00 - 12:30</span>
-            <h3><a href="https://maps.app.goo.gl/xY6x8g7h7mZ8m9tL8" target="_blank">Lumine Est 新宿</a></h3>
-            <p>🛍️ <b>珍藏名單</b>：直奔百貨內的 <b>STYLEMIXER</b> 旗艦店，購入設計感爆棚的當季日系服飾。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=STYLEMIXER+ルミネエスト新宿店" target="_blank">Lumine Est 新宿 (STYLEMIXER)</a></h3>
+            <p>🛍️ <b>珍藏名單</b>：一進百貨直奔 <b>STYLEMIXER</b>，選購極具設計感、高質感的日系女裝服飾。</p>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">12:30 - 14:00</span>
-            <h3>午餐：<a href="https://maps.app.goo.gl/tM45gK6z5nKCHv7C9" target="_blank">日本橋炸豬排—HAJIME 新宿店</a></h3>
-            <p>🐖 <b>珍藏名單</b>：享用極度厚切、肉質呈現粉嫩熟成色澤的夢幻脆皮炸豬排！</p>
+            <h3>午餐：夢幻炸豬排大決選</h3>
+            <p>• <a href="https://www.google.com/maps/search/?api=1&query=日本橋炸豬排+HAJIME+新宿店" target="_blank">日本橋炸豬排—HAJIME 新宿店</a>：<b>珍藏名單</b>！極致厚切、肉質呈現夢幻櫻粉色的低溫熟成脆皮炸豬排。</p>
             <div class="flexible-box">
-                <div class="flex-trigger" onclick="toggleFlex(this)">查看 Flexible 豬排替代方案</div>
+                <div class="flex-trigger" onclick="toggleFlex(this)">若 HAJIME 人太多，點此切換 Flexible 豬排備案</div>
                 <div class="flex-content">
-                    • <b><a href="https://maps.app.goo.gl/wY6x8g7h7mZ8m9tL8" target="_blank">黑豬肉炸豬排 Satsumaya TonTon (さつまやとんとん)</a></b>：<b>珍藏名單</b>！正宗鹿兒島黑豬肉代名詞，若 HAJIME 排隊太長可立刻改換這家！
+                    • <a href="https://www.google.com/maps/search/?api=1&query=黑豬肉炸豬排店+Satsumaya+TonTon" target="_blank">黑豬肉炸豬排店 Satsumaya TonTon</a>：<b>珍藏名單</b>！主打正宗甘甜的鹿兒島黑豬肉炸豬排，極度美味！
                 </div>
             </div>
         </div>
         
-        <div class="card">
-            <span class="time-tag">14:00 - 18:00</span>
-            <h3>新宿全區大血拼</h3>
-            <p>瘋逛 Bic Camera 買電器藥妝、伊勢丹與高島屋百貨。</p>
-        </div>
-        
         <div class="transit-link">
-            <span class="transit-icon">🚶</span>
-            <span>步行至新宿東口廣場</span>
+            <span>🚶 新宿區內大範圍血拼（Bic Camera 買電器、藥妝百貨）</span>
         </div>
         
         <div class="card">
             <span class="time-tag">18:00 - 18:30</span>
-            <h3>朝聖 <a href="https://maps.app.goo.gl/Hco4gWszqQ9m9tL8" target="_blank">The Giant 3D Cat</a></h3>
-            <p>在東口廣場抬頭尋找新宿最吸睛的巨型 3D 萌貓並錄影留念。</p>
+            <h3>朝聖 <a href="https://www.google.com/maps/search/?api=1&query=The+Giant+3D+Cat" target="_blank">The Giant 3D Cat</a></h3>
+            <p>在新宿東口廣場抬頭捕捉那隻超巨大、活靈活現的 3D 巨貓，錄影留念。</p>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">18:30 - 21:30</span>
-            <h3><a href="https://maps.app.goo.gl/rY6x8g7h7mZ8m9tL8" target="_blank">東急歌舞伎町 Tower</a></h3>
-            <p>造訪超現實、塞滿賽博朋克式霓虹燈的魔幻歌舞伎町新地標。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=東急歌舞伎町+Tower" target="_blank">東急歌舞伎町 Tower</a></h3>
+            <p>探訪霓虹魔幻、科技感十足的新宿全新娛樂地標不夜城。</p>
             <div class="flexible-box">
-                <div class="flex-trigger" onclick="toggleFlex(this)">展開 Flexible 歌舞伎町和牛晚餐</div>
+                <div class="flex-trigger" onclick="toggleFlex(this)">查看今晚歌舞伎町黑毛和牛晚餐備案</div>
                 <div class="flex-content">
-                    • <b><a href="https://maps.app.goo.gl/Wco4gWszqQ9m9tL8" target="_blank">Shabushabu Niimura 新村 (にいむら)</a></b>：<b>珍藏名單</b>！位於歌舞伎町核心的極高 CP 值老字號黑毛和牛涮涮鍋與壽喜燒。
+                    • <a href="https://www.google.com/maps/search/?api=1&query=Shabushabu+Niimura+歌舞伎町" target="_blank">Shabushabu Niimura (新村)</a>：<b>珍藏名單</b>！歌舞伎町區內極高性價比的老字號黑毛和牛涮涮鍋、壽喜燒。
                 </div>
             </div>
         </div>
@@ -351,47 +346,44 @@
     <div class="day-panel" id="day5">
         <div class="card hotel">
             <span class="time-tag">09:30 - 11:00</span>
-            <h3>退房、寄放行李</h3>
-            <p>在東急STAY高輪辦理退房，行李免費寄放在飯店櫃檯。</p>
+            <h3>退房寄存行李</h3>
+            <p>在東急STAY高輪辦理 Check-out，將大件行李寄放在飯店櫃檯。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>搭乘地鐵前往神樂坂區域</span>
+            <span>🚃 <b>推薦交通方式：</b>搭乘大江戶線或淺草線前往優雅的神樂坂區域。</span>
         </div>
         
         <div class="card dinner">
             <span class="time-tag">11:15 - 12:45</span>
-            <h3>午餐：<a href="https://maps.app.goo.gl/pM57aK6z5nKCHv7C9" target="_blank">Salmon Noodle 3.0 (サー門ヌードル3.0)</a></h3>
-            <p>🍜 <b>珍藏名單</b>：法式法餐分子料理手法的鮭魚拉麵，湯頭濃郁如法式鮭魚濃湯，視覺與口感驚豔！</p>
+            <h3>午餐：<a href="https://www.google.com/maps/search/?api=1&query=Salmon+Noodle+3.0" target="_blank">Salmon Noodle 3.0</a></h3>
+            <p>🍜 <b>珍藏名單</b>：法式分子料理概念的「極致鮭魚拉麵」，湯頭猶如法式鮭魚濃湯般細緻，口感極度驚豔！</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>搭地鐵前往「赤羽橋站」或「御成門站」</span>
+            <span>🚃 <b>推薦交通方式：</b>搭乘地鐵前往「赤羽橋站」或「御成門站」。</span>
         </div>
         
         <div class="card">
             <span class="time-tag">13:15 - 15:00</span>
-            <h3><a href="https://maps.app.goo.gl/Xy7A6w1gD9wmsP87" target="_blank">芝公園 & 東京鐵塔日拍</a></h3>
-            <p>躺在綠意盎然的芝公園草皮上，與紅白相間的雄偉東京鐵塔留下美麗合照。</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=芝公園" target="_blank">芝公園 & 東京鐵塔日拍</a></h3>
+            <p>躺在芝公園的大草皮上，從綠地仰望晴空下的紅白鐵塔，留下最後最美的東京合照。</p>
         </div>
         
         <div class="transit-link">
-            <span class="transit-icon">🚃</span>
-            <span>15:30 返回高輪飯店取回行李</span>
+            <span>🚃 <b>推薦交通方式：</b>15:30 前準時返回高輪飯店取回大行李。</span>
         </div>
         
         <div class="card airport" style="background: #edf2f7;">
             <span class="time-tag">16:14</span>
             <h3>直達快車回成田機場</h3>
-            <p>於「<b>泉岳寺站</b>」直接坐上 <b>京成電鐵 Access 特快 (成田空港行)</b>。一路免轉車直達成田機場 T2，約 17:30 抵達。</p>
+            <p>於「<b>泉岳寺站</b>」直接登上 <b>京成電鐵 Access 特快 (成田空港行)</b>。一路免換車直達成田機場 T2，約 17:30 抵達。</p>
         </div>
         
         <div class="card airport">
             <span class="time-tag">19:30</span>
-            <h3><a href="https://maps.app.goo.gl/pW8xGvXvsz3pPZtL6" target="_blank">成田國際機場 T2</a></h3>
-            <p>搭乘 <span class="highlight">台灣虎航 IT203</span> 返航（預計 22:35 抵達桃園 T1），結束完美假期！</p>
+            <h3><a href="https://www.google.com/maps/search/?api=1&query=成田國際機場第二航廈" target="_blank">成田機場 T2 ➔ 台灣</a></h3>
+            <p>搭乘 <span class="highlight">台灣虎航 IT203</span> 返航（預計 22:35 降落桃園 T1），完美結束精彩的東京之旅！</p>
         </div>
     </div>
 
